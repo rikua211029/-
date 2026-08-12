@@ -7,25 +7,14 @@
 <title>JR西日本 駅名漢字タイピング</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
 
-html,
 body {
     margin: 0;
-    width: 100%;
-    min-height: 100%;
-}
-
-body {
     min-height: 100vh;
-
-    font-family:
-        "Yu Gothic",
-        "Meiryo",
-        sans-serif;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
 
     background:
         radial-gradient(
@@ -44,35 +33,30 @@ body {
     padding: 12px;
 }
 
-
-/* ==========================================
-   メイン
-========================================== */
-
 .game {
     width: 100%;
-    max-width: 760px;
+    max-width: 780px;
 
-    background:
-        rgba(255,255,255,.08);
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
 
-    border:
-        1px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.08);
+
+    border: 1px solid rgba(255,255,255,.15);
 
     backdrop-filter: blur(15px);
 
-    border-radius: 20px;
+    border-radius: 22px;
 
     padding: 20px;
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,.45);
+        0 20px 60px rgba(0,0,0,.45);
 }
 
-
-/* ==========================================
+/* =========================
    タイトル
-========================================== */
+========================= */
 
 .title {
     text-align: center;
@@ -81,7 +65,7 @@ body {
 .title h1 {
     margin: 0;
 
-    font-size: 25px;
+    font-size: 27px;
 
     color: #7dffbd;
 }
@@ -89,127 +73,89 @@ body {
 .title p {
     color: #b7c9c2;
 
-    margin: 4px 0 0;
+    margin: 5px 0 0;
 
     font-size: 13px;
 }
 
+/* =========================
+   設定
+========================= */
 
-/* ==========================================
-   操作説明
-========================================== */
+.settings {
+    display: grid;
 
-.controls-info {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.setting-box {
+    background: rgba(0,0,0,.22);
+
+    border-radius: 13px;
+
+    padding: 10px;
+}
+
+.setting-title {
     text-align: center;
 
-    margin-top: 10px;
+    color: #9aada6;
 
-    color: #a9bdb5;
+    font-size: 11px;
 
-    font-size: 12px;
+    margin-bottom: 7px;
 }
 
-.key {
-    display: inline-block;
-
-    padding: 2px 7px;
-
-    margin: 0 2px;
-
-    border-radius: 5px;
-
-    background: rgba(255,255,255,.12);
-
-    border:
-        1px solid rgba(255,255,255,.15);
-
-    color: white;
-
-    font-weight: bold;
-}
-
-
-/* ==========================================
-   難易度
-========================================== */
-
-.difficulty {
+.difficulty,
+.skip-select {
     display: flex;
 
     justify-content: center;
 
-    gap: 7px;
-
-    margin-top: 12px;
-
-    flex-wrap: wrap;
+    gap: 6px;
 }
 
-.difficulty button {
-    border: none;
+.difficulty button,
+.skip-select button {
+    flex: 1;
 
-    border-radius: 9px;
+    padding: 9px 5px;
 
-    padding: 7px 15px;
+    background: rgba(255,255,255,.1);
+
+    color: white;
 
     font-size: 13px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    background:
-        rgba(255,255,255,.1);
-
-    color: white;
-
-    transition: .15s;
 }
 
-.difficulty button:hover {
-    transform: translateY(-1px);
+.difficulty button.active,
+.skip-select button.active {
+    background: #087f4f;
 }
 
-.difficulty button.active {
-    background:
-        #087f4f;
-
-    color: white;
-
-    box-shadow:
-        0 0 12px rgba(32,201,121,.25);
-}
-
-.difficulty button:disabled {
-    opacity: .45;
-
-    cursor: default;
-
-    transform: none;
-}
-
-
-/* ==========================================
+/* =========================
    ステータス
-========================================== */
+========================= */
 
 .status {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(4, 1fr);
 
     gap: 8px;
 
-    margin:
-        13px 0;
+    margin: 13px 0;
 }
 
 .status-box {
-    background:
-        rgba(0,0,0,.25);
+    background: rgba(0,0,0,.25);
 
-    border-radius: 11px;
+    border-radius: 12px;
 
     padding: 8px;
 
@@ -230,21 +176,18 @@ body {
     margin-top: 2px;
 }
 
-
-/* ==========================================
+/* =========================
    ゲーム画面
-========================================== */
+========================= */
 
 .question {
     text-align: center;
 
-    padding:
-        22px 18px;
+    padding: 24px 18px;
 
-    background:
-        rgba(0,0,0,.22);
+    background: rgba(0,0,0,.22);
 
-    border-radius: 16px;
+    border-radius: 17px;
 }
 
 .question-label {
@@ -258,10 +201,9 @@ body {
 
     font-weight: bold;
 
-    letter-spacing: 6px;
+    letter-spacing: 7px;
 
-    margin:
-        10px 0 5px;
+    margin: 9px 0 5px;
 }
 
 .line-name {
@@ -270,13 +212,8 @@ body {
     font-size: 12px;
 }
 
-
-/* ==========================================
-   入力
-========================================== */
-
 .input-area {
-    margin-top: 12px;
+    margin-top: 14px;
 }
 
 input {
@@ -284,13 +221,11 @@ input {
 
     padding: 13px;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
-    border:
-        2px solid #315f50;
+    border: 2px solid #315f50;
 
-    background:
-        rgba(0,0,0,.35);
+    background: rgba(0,0,0,.35);
 
     color: white;
 
@@ -302,25 +237,37 @@ input {
 }
 
 input:focus {
-    border-color:
-        #7dffbd;
+    border-color: #7dffbd;
 
     box-shadow:
-        0 0 15px
+        0 0 18px
         rgba(125,255,189,.15);
 }
 
+/* =========================
+   操作説明
+========================= */
 
-/* ==========================================
-   メッセージ
-========================================== */
+.controls {
+    text-align: center;
+
+    color: #9aada6;
+
+    font-size: 11px;
+
+    margin-top: 9px;
+}
+
+.controls b {
+    color: #7dffbd;
+}
 
 .message {
     min-height: 23px;
 
     text-align: center;
 
-    margin-top: 8px;
+    margin-top: 7px;
 
     font-size: 14px;
 
@@ -335,67 +282,94 @@ input:focus {
     color: #ff7373;
 }
 
+/* =========================
+   ボタン
+========================= */
 
-/* ==========================================
-   解説画面
-========================================== */
+button {
+    border: none;
+
+    border-radius: 11px;
+
+    padding: 11px 18px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .15s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    opacity: .45;
+
+    cursor: default;
+
+    transform: none;
+}
+
+.start-button,
+.next-button {
+    display: block;
+
+    margin: 14px auto 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #20c979,
+            #087f4f
+        );
+
+    color: white;
+
+    min-width: 190px;
+}
+
+/* =========================
+   解説
+========================= */
 
 .explanation {
     display: none;
 
     text-align: center;
 
-    background:
-        rgba(0,0,0,.25);
+    background: rgba(0,0,0,.25);
 
-    border-radius: 16px;
+    border-radius: 17px;
 
-    padding:
-        20px;
-
-    animation:
-        explanationIn .2s ease;
+    padding: 20px;
 }
 
 .explanation.show {
     display: block;
 }
 
-@keyframes explanationIn {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-}
-
 .result-mark {
-    font-size: 34px;
+    font-size: 38px;
 
     margin-bottom: 2px;
 }
 
 .explanation-title {
-    font-size: 19px;
+    font-size: 20px;
 
     font-weight: bold;
 
     color: #7dffbd;
 
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .explanation-station {
-    font-size: 40px;
+    font-size: 39px;
 
     font-weight: bold;
 
@@ -417,14 +391,13 @@ input:focus {
 .explanation-info {
     text-align: left;
 
-    background:
-        rgba(255,255,255,.06);
+    background: rgba(255,255,255,.06);
 
-    border-radius: 11px;
+    border-radius: 13px;
 
     padding: 11px 14px;
 
-    line-height: 1.45;
+    line-height: 1.55;
 }
 
 .info-row {
@@ -444,7 +417,7 @@ input:focus {
 }
 
 .info-label {
-    min-width: 55px;
+    min-width: 60px;
 
     color: #8fa69c;
 
@@ -459,35 +432,20 @@ input:focus {
     font-weight: bold;
 }
 
-
-/* ==========================================
-   解説中の操作表示
-========================================== */
-
-.explanation-next {
-    margin-top: 11px;
-
-    color: #9aada6;
-
-    font-size: 12px;
+.next-button {
+    margin-top: 13px;
 }
 
-.explanation-next .key {
-    color: white;
-}
-
-
-/* ==========================================
-   結果画面
-========================================== */
+/* =========================
+   結果
+========================= */
 
 .result {
     display: none;
 
     text-align: center;
 
-    padding:
-        20px 10px;
+    padding: 20px 10px;
 }
 
 .result.show {
@@ -499,8 +457,7 @@ input:focus {
 
     font-size: 27px;
 
-    margin:
-        0 0 8px;
+    margin: 5px 0;
 }
 
 .final-score {
@@ -508,115 +465,74 @@ input:focus {
 
     font-weight: bold;
 
-    margin:
-        5px 0 10px;
+    margin: 8px 0;
 }
 
 .result-info {
     color: #c1d1cb;
 
-    line-height: 1.7;
+    line-height: 1.8;
 
     font-size: 13px;
 }
 
-.result-restart {
-    margin-top: 12px;
-
-    color: #9aada6;
-
-    font-size: 12px;
-}
-
-
-/* ==========================================
-   1920 × 1080向け
-========================================== */
-
-@media (min-width: 1000px) and (min-height: 800px) {
-
-    .game {
-        max-width: 760px;
-
-        padding: 20px;
-    }
-
-}
-
-
-/* ==========================================
+/* =========================
    スマホ
-========================================== */
+========================= */
 
 @media(max-width:600px) {
 
     body {
-        padding: 8px;
+        padding: 7px;
     }
 
     .game {
         padding: 14px;
 
-        border-radius: 17px;
+        max-height: calc(100vh - 14px);
     }
 
     .title h1 {
         font-size: 21px;
     }
 
-    .title p {
-        font-size: 11px;
+    .settings {
+        grid-template-columns: 1fr;
     }
 
     .station {
-        font-size: 37px;
+        font-size: 36px;
 
         letter-spacing: 4px;
     }
 
-    .question {
-        padding:
-            18px 12px;
-    }
-
     .status-value {
-        font-size: 17px;
+        font-size: 16px;
     }
 
     input {
         font-size: 17px;
-
-        padding: 12px;
     }
 
     .explanation-station {
-        font-size: 32px;
+        font-size: 31px;
     }
-
-    .reading {
-        font-size: 19px;
-    }
-
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="game">
 
-
-    <!-- ======================================
+    <!-- =========================
          タイトル
-    ======================================= -->
+    ========================== -->
 
     <div class="title">
 
         <h1>
-            🚉 JR西日本
-            駅名漢字タイピング
+            🚉 JR西日本 駅名漢字タイピング
         </h1>
 
         <p>
@@ -626,54 +542,81 @@ input:focus {
     </div>
 
 
-    <!-- ======================================
-         操作説明
-    ======================================= -->
+    <!-- =========================
+         設定
+    ========================== -->
 
-    <div class="controls-info">
+    <div class="settings">
 
-        <span class="key">Enter</span>
-        ゲーム開始・解説を進む
+        <div class="setting-box">
 
-        ／
+            <div class="setting-title">
+                難易度
+            </div>
 
-        <span class="key">Space</span>
-        空欄でスキップ
+            <div class="difficulty">
+
+                <button
+                    class="active"
+                    onclick="setDifficulty('normal', this)"
+                >
+                    🟢 普通
+                </button>
+
+                <button
+                    onclick="setDifficulty('hard', this)"
+                >
+                    🟡 難しい
+                </button>
+
+                <button
+                    onclick="setDifficulty('expert', this)"
+                >
+                    🔴 鬼
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="setting-box">
+
+            <div class="setting-title">
+                スキップ回数
+            </div>
+
+            <div class="skip-select">
+
+                <button
+                    class="active"
+                    onclick="setSkipLimit(1, this)"
+                >
+                    1回
+                </button>
+
+                <button
+                    onclick="setSkipLimit(2, this)"
+                >
+                    2回
+                </button>
+
+                <button
+                    onclick="setSkipLimit(3, this)"
+                >
+                    3回
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 
 
-    <!-- ======================================
-         難易度
-    ======================================= -->
-
-    <div class="difficulty">
-
-        <button
-            class="active"
-            onclick="setDifficulty('normal', this)"
-        >
-            🟢 普通
-        </button>
-
-        <button
-            onclick="setDifficulty('hard', this)"
-        >
-            🟡 難しい
-        </button>
-
-        <button
-            onclick="setDifficulty('expert', this)"
-        >
-            🔴 鬼
-        </button>
-
-    </div>
-
-
-    <!-- ======================================
+    <!-- =========================
          ステータス
-    ======================================= -->
+    ========================== -->
 
     <div class="status">
 
@@ -724,12 +667,28 @@ input:focus {
 
         </div>
 
+
+        <div class="status-box">
+
+            <div class="status-label">
+                SKIP
+            </div>
+
+            <div
+                class="status-value"
+                id="skipCount"
+            >
+                0/1
+            </div>
+
+        </div>
+
     </div>
 
 
-    <!-- ======================================
+    <!-- =========================
          ゲーム画面
-    ======================================= -->
+    ========================== -->
 
     <div id="gameScreen">
 
@@ -743,14 +702,14 @@ input:focus {
                 class="station"
                 id="station"
             >
-                ENTER
+                START
             </div>
 
             <div
                 class="line-name"
                 id="line"
             >
-                Enterキーでゲーム開始
+                JR西日本 駅名タイピング
             </div>
 
 
@@ -759,7 +718,7 @@ input:focus {
                 <input
                     id="answer"
                     type="text"
-                    placeholder="ここに読みを入力"
+                    placeholder="読みを入力"
                     autocomplete="off"
                     disabled
                 >
@@ -770,16 +729,33 @@ input:focus {
 
 
         <div
+            class="controls"
+            id="controls"
+        >
+            Enter：決定　／　入力が空欄なら Space：スキップ
+        </div>
+
+
+        <div
             class="message"
             id="message"
         ></div>
 
+
+        <button
+            class="start-button"
+            id="startButton"
+            onclick="startGame()"
+        >
+            ▶ ゲームスタート
+        </button>
+
     </div>
 
 
-    <!-- ======================================
+    <!-- =========================
          解説画面
-    ======================================= -->
+    ========================== -->
 
     <div
         class="explanation"
@@ -806,7 +782,6 @@ input:focus {
             class="explanation-station"
             id="explanationStation"
         >
-            放出
         </div>
 
 
@@ -814,7 +789,6 @@ input:focus {
             class="reading"
             id="explanationReading"
         >
-            はなてん
         </div>
 
 
@@ -829,7 +803,8 @@ input:focus {
                 <div
                     class="info-value"
                     id="explanationLine"
-                ></div>
+                >
+                </div>
 
             </div>
 
@@ -843,7 +818,8 @@ input:focus {
                 <div
                     class="info-value"
                     id="explanationAnswer"
-                ></div>
+                >
+                </div>
 
             </div>
 
@@ -857,7 +833,8 @@ input:focus {
                 <div
                     class="info-value"
                     id="explanationLevel"
-                ></div>
+                >
+                </div>
 
             </div>
 
@@ -871,26 +848,32 @@ input:focus {
                 <div
                     class="info-value"
                     id="explanationText"
-                ></div>
+                >
+                </div>
 
             </div>
 
         </div>
 
 
-        <div class="explanation-next">
-
-            <span class="key">Enter</span>
-            で次の問題
-
+        <div class="controls">
+            Enter：次の問題
         </div>
+
+
+        <button
+            class="next-button"
+            onclick="nextFromExplanation()"
+        >
+            ▶ 次の問題
+        </button>
 
     </div>
 
 
-    <!-- ======================================
+    <!-- =========================
          結果画面
-    ======================================= -->
+    ========================== -->
 
     <div
         class="result"
@@ -898,7 +881,7 @@ input:focus {
     >
 
         <h2>
-            🎉 GAME CLEAR!
+            🎉 TIME UP!
         </h2>
 
 
@@ -913,15 +896,16 @@ input:focus {
         <div
             class="result-info"
             id="resultInfo"
-        ></div>
-
-
-        <div class="result-restart">
-
-            <span class="key">Enter</span>
-            でもう一回
-
+        >
         </div>
+
+
+        <button
+            class="start-button"
+            onclick="startGame()"
+        >
+            🔄 もう一回
+        </button>
 
     </div>
 
@@ -930,109 +914,28 @@ input:focus {
 
 <script>
 
-
-/* ==========================================
-   JR西日本 駅名データ
-========================================== */
+/* ==================================================
+   JR西日本 駅データ
+================================================== */
 
 const stations = [
 
-    /* ===== 山陽本線 ===== */
+    /* ===== 普通 ===== */
+
+    {
+        name:"大阪",
+        reading:"おおさか",
+        line:"東海道本線・大阪環状線ほか",
+        level:"normal",
+        explanation:"JR西日本の代表的なターミナル駅。大阪駅と梅田周辺の各駅が一体的な巨大ターミナルを形成しているで。"
+    },
 
     {
         name:"姫路",
         reading:"ひめじ",
         line:"山陽本線・播但線・姫新線",
         level:"normal",
-        explanation:"兵庫県西部の主要駅。山陽新幹線も停車するJR西日本の重要なターミナル駅やで。"
-    },
-
-    {
-        name:"英賀保",
-        reading:"あがほ",
-        line:"山陽本線",
-        level:"hard",
-        explanation:"姫路市にある駅。「英賀保」と書いて「あがほ」と読む地名やで。"
-    },
-
-    {
-        name:"網干",
-        reading:"あぼし",
-        line:"山陽本線",
-        level:"normal",
-        explanation:"姫路市南西部にある駅。「網干」で「あぼし」と読むで。"
-    },
-
-    {
-        name:"御着",
-        reading:"ごちゃく",
-        line:"山陽本線",
-        level:"hard",
-        explanation:"姫路市にある駅。「御着」と書いて「ごちゃく」と読む、播磨地域の難読地名やな。"
-    },
-
-    {
-        name:"曽根",
-        reading:"そね",
-        line:"山陽本線",
-        level:"normal",
-        explanation:"高砂市にある駅。山陽本線の駅で、読みは「そね」やで。"
-    },
-
-    {
-        name:"宝殿",
-        reading:"ほうでん",
-        line:"山陽本線",
-        level:"normal",
-        explanation:"高砂市と加古川市の境界付近にある駅。「ほうでん」と読むで。"
-    },
-
-    {
-        name:"加古川",
-        reading:"かこがわ",
-        line:"山陽本線・加古川線",
-        level:"normal",
-        explanation:"加古川市の中心駅。加古川線が分岐する主要駅やで。"
-    },
-
-    {
-        name:"東加古川",
-        reading:"ひがしかこがわ",
-        line:"山陽本線",
-        level:"normal",
-        explanation:"加古川市にある山陽本線の駅。「ひがしかこがわ」と読むで。"
-    },
-
-    {
-        name:"土山",
-        reading:"つちやま",
-        line:"山陽本線",
-        level:"normal",
-        explanation:"兵庫県播磨町付近にある駅。読みは「つちやま」やで。"
-    },
-
-    {
-        name:"魚住",
-        reading:"うおずみ",
-        line:"山陽本線",
-        level:"normal",
-        explanation:"明石市西部にある駅。「魚住」で「うおずみ」と読むで。"
-    },
-
-    {
-        name:"大久保",
-        reading:"おおくぼ",
-        line:"山陽本線",
-        level:"normal",
-        explanation:"明石市にある駅。読みは一般的な「おおくぼ」やで。"
-    },
-
-    {
-        name:"西明石",
-        reading:"にしあかし",
-        line:"山陽本線・山陽新幹線",
-        level:"normal",
-        explanation:"山陽新幹線の停車駅。新幹線と在来線を結ぶ重要な駅やで。"
+        explanation:"兵庫県西部を代表するターミナル駅。新幹線も停車するJR西日本の主要駅や。"
     },
 
     {
@@ -1040,555 +943,168 @@ const stations = [
         reading:"あかし",
         line:"山陽本線",
         level:"normal",
-        explanation:"明石市の中心駅。山陽本線の新快速も停車する主要駅やで。"
+        explanation:"明石市の中心駅。山陽本線の新快速停車駅としても知られとるで。"
     },
 
     {
-        name:"舞子",
-        reading:"まいこ",
+        name:"神戸",
+        reading:"こうべ",
+        line:"東海道本線・山陽本線",
+        level:"normal",
+        explanation:"神戸市の中心駅のひとつ。JR神戸線の西側の起点になっとる駅や。"
+    },
+
+    {
+        name:"三ノ宮",
+        reading:"さんのみや",
+        line:"東海道本線",
+        level:"normal",
+        explanation:"神戸市最大のターミナル駅。神戸の中心市街地へのアクセス駅やで。"
+    },
+
+    {
+        name:"西明石",
+        reading:"にしあかし",
+        line:"山陽新幹線・山陽本線",
+        level:"normal",
+        explanation:"新幹線の停車駅で、山陽本線と接続する明石市の主要駅や。"
+    },
+
+    {
+        name:"加古川",
+        reading:"かこがわ",
+        line:"山陽本線・加古川線",
+        level:"normal",
+        explanation:"加古川線が分岐する主要駅。新快速も停車するで。"
+    },
+
+    {
+        name:"網干",
+        reading:"あぼし",
         line:"山陽本線",
         level:"normal",
-        explanation:"明石海峡大橋に近い駅。舞子公園へのアクセス駅でもあるで。"
+        explanation:"姫路市南西部にある駅。「網干」と書いて「あぼし」と読むんや。"
     },
 
     {
-        name:"垂水",
-        reading:"たるみ",
+        name:"御着",
+        reading:"ごちゃく",
         line:"山陽本線",
         level:"normal",
-        explanation:"神戸市垂水区の中心駅。「たるみ」と読むで。"
+        explanation:"姫路市にある駅。「御着」で「ごちゃく」と読む難読地名やで。"
     },
 
     {
-        name:"須磨",
-        reading:"すま",
+        name:"英賀保",
+        reading:"あがほ",
         line:"山陽本線",
         level:"normal",
-        explanation:"神戸市須磨区にある駅。須磨海岸にも近い駅やで。"
+        explanation:"姫路市にある駅。「英賀保」と書いて「あがほ」と読むで。"
     },
 
     {
-        name:"兵庫",
-        reading:"ひょうご",
-        line:"山陽本線・和田岬線",
-        level:"normal",
-        explanation:"神戸市兵庫区の駅。和田岬線が分岐する駅やで。"
-    },
-
-    {
-        name:"鷹取",
-        reading:"たかとり",
+        name:"宝殿",
+        reading:"ほうでん",
         line:"山陽本線",
         level:"normal",
-        explanation:"神戸市須磨区にある駅。「たかとり」と読むで。"
+        explanation:"高砂市にある山陽本線の駅。読みは「ほうでん」やで。"
     },
 
-
-    /* ===== JR東西線・学研都市線 ===== */
-
     {
-        name:"放出",
-        reading:"はなてん",
-        line:"学研都市線・おおさか東線",
+        name:"土山",
+        reading:"つちやま",
+        line:"山陽本線",
         level:"normal",
-        explanation:"「ほうしゅつ」ではなく「はなてん」と読む有名な難読駅名やで。"
+        explanation:"播磨町・明石市周辺の駅。読みは「つちやま」や。"
     },
 
     {
-        name:"御幣島",
-        reading:"みてじま",
-        line:"JR東西線",
-        level:"hard",
-        explanation:"大阪市西淀川区にある駅。「御幣島」と書いて「みてじま」と読むで。"
-    },
-
-    {
-        name:"加島",
-        reading:"かしま",
-        line:"JR東西線",
+        name:"魚住",
+        reading:"うおずみ",
+        line:"山陽本線",
         level:"normal",
-        explanation:"大阪市淀川区にあるJR東西線の駅。「かしま」と読むで。"
+        explanation:"明石市にある駅。「魚住」で「うおずみ」と読むで。"
     },
 
     {
-        name:"野田",
-        reading:"のだ",
-        line:"大阪環状線・JR東西線",
+        name:"相生",
+        reading:"あいおい",
+        line:"山陽新幹線・山陽本線・赤穂線",
         level:"normal",
-        explanation:"大阪市福島区周辺の駅。「のだ」と読むで。"
+        explanation:"山陽新幹線と在来線が接続する兵庫県西部の主要駅や。"
     },
 
     {
-        name:"京橋",
-        reading:"きょうばし",
-        line:"大阪環状線・JR東西線・学研都市線",
+        name:"赤穂",
+        reading:"あこう",
+        line:"赤穂線",
         level:"normal",
-        explanation:"大阪を代表するターミナル駅のひとつ。複数のJR線が集まる駅やで。"
+        explanation:"赤穂市を代表する地名。「あこう」と読むで。"
     },
 
     {
-        name:"忍ケ丘",
-        reading:"しのぶがおか",
-        line:"学研都市線",
+        name:"上郡",
+        reading:"かみごおり",
+        line:"山陽本線・智頭急行",
         level:"normal",
-        explanation:"四條畷市にある駅。「忍」を「しのぶ」と読むのがポイントやで。"
+        explanation:"兵庫県西部の駅。智頭急行線との接続駅でもあるで。"
     },
 
     {
-        name:"河内磐船",
-        reading:"かわちいわふね",
-        line:"学研都市線",
+        name:"和田山",
+        reading:"わだやま",
+        line:"山陰本線・播但線",
         level:"normal",
-        explanation:"「磐船」は「いわふね」と読む。交野市にある駅やで。"
+        explanation:"播但線と山陰本線が接続する但馬地方の主要駅や。"
     },
 
     {
-        name:"祝園",
-        reading:"ほうその",
-        line:"学研都市線",
-        level:"hard",
-        explanation:"「祝園」と書いて「ほうその」と読む難読駅名やで。"
-    },
-
-
-    /* ===== 大阪環状線 ===== */
-
-    {
-        name:"天王寺",
-        reading:"てんのうじ",
-        line:"大阪環状線・阪和線・大和路線",
+        name:"竹田",
+        reading:"たけだ",
+        line:"播但線",
         level:"normal",
-        explanation:"大阪南部を代表する巨大ターミナル駅やで。"
+        explanation:"竹田城跡へのアクセス駅として有名な駅やで。"
     },
 
     {
-        name:"寺田町",
-        reading:"てらだちょう",
-        line:"大阪環状線",
+        name:"生野",
+        reading:"いくの",
+        line:"播但線",
         level:"normal",
-        explanation:"大阪環状線の駅。「てらだちょう」と読むで。"
+        explanation:"播但線の駅。生野銀山でも知られる地域やな。"
     },
 
     {
-        name:"桃谷",
-        reading:"ももだに",
-        line:"大阪環状線",
+        name:"寺前",
+        reading:"てらまえ",
+        line:"播但線",
         level:"normal",
-        explanation:"大阪市天王寺区にある駅。「ももだに」と読むで。"
+        explanation:"播但線の主要駅。ここから和田山方面は山岳区間に入るで。"
     },
 
     {
-        name:"鶴橋",
-        reading:"つるはし",
-        line:"大阪環状線・大阪線",
+        name:"溝口",
+        reading:"みぞぐち",
+        line:"播但線",
         level:"normal",
-        explanation:"大阪環状線の主要駅。近鉄線・大阪メトロとも接続するで。"
+        explanation:"姫路市にある播但線の駅。読みは「みぞぐち」や。"
     },
 
     {
-        name:"玉造",
-        reading:"たまつくり",
-        line:"大阪環状線",
+        name:"鶴居",
+        reading:"つるい",
+        line:"播但線",
         level:"normal",
-        explanation:"大阪市中央区・天王寺区付近の駅。「たまつくり」と読むで。"
+        explanation:"神崎郡市川町にある播但線の駅やで。"
     },
 
     {
-        name:"森ノ宮",
-        reading:"もりのみや",
-        line:"大阪環状線",
+        name:"新宮",
+        reading:"しんぐう",
+        line:"きのくに線",
         level:"normal",
-        explanation:"大阪城公園に近い駅。「もりのみや」と読むで。"
+        explanation:"和歌山県新宮市の中心駅。きのくに線の主要駅や。"
     },
-
-    {
-        name:"大阪城公園",
-        reading:"おおさかじょうこうえん",
-        line:"大阪環状線",
-        level:"normal",
-        explanation:"大阪城公園の最寄り駅のひとつ。駅名どおりの読み方やで。"
-    },
-
-    {
-        name:"桜ノ宮",
-        reading:"さくらのみや",
-        line:"大阪環状線",
-        level:"normal",
-        explanation:"大川沿いにある大阪環状線の駅。「さくらのみや」と読むで。"
-    },
-
-    {
-        name:"福島",
-        reading:"ふくしま",
-        line:"大阪環状線",
-        level:"normal",
-        explanation:"大阪市福島区にある駅。大阪駅からも近い駅やで。"
-    },
-
-    {
-        name:"弁天町",
-        reading:"べんてんちょう",
-        line:"大阪環状線",
-        level:"normal",
-        explanation:"大阪市港区にある駅。「べんてんちょう」と読むで。"
-    },
-
-    {
-        name:"西九条",
-        reading:"にしくじょう",
-        line:"大阪環状線・桜島線",
-        level:"hard",
-        explanation:"桜島線が分岐する駅。「西九条」で「にしくじょう」と読むで。"
-    },
-
-
-    /* ===== 阪和線 ===== */
-
-    {
-        name:"百舌鳥",
-        reading:"もず",
-        line:"阪和線",
-        level:"hard",
-        explanation:"「百舌鳥」と書いて「もず」。大阪の有名な難読地名やで。"
-    },
-
-    {
-        name:"鳳",
-        reading:"おおとり",
-        line:"阪和線",
-        level:"hard",
-        explanation:"一文字で「おおとり」と読む駅名。かなり特徴的やな。"
-    },
-
-    {
-        name:"和泉府中",
-        reading:"いずみふちゅう",
-        line:"阪和線",
-        level:"normal",
-        explanation:"和泉市の主要駅。「いずみふちゅう」と読むで。"
-    },
-
-    {
-        name:"熊取",
-        reading:"くまとり",
-        line:"阪和線",
-        level:"normal",
-        explanation:"大阪府熊取町にある駅。「くまとり」と読むで。"
-    },
-
-    {
-        name:"日根野",
-        reading:"ひねの",
-        line:"阪和線・関西空港線",
-        level:"hard",
-        explanation:"関西空港線が分岐する重要駅。「ひねの」と読むで。"
-    },
-
-    {
-        name:"和泉砂川",
-        reading:"いずみすながわ",
-        line:"阪和線",
-        level:"normal",
-        explanation:"泉南市にある阪和線の駅。「いずみすながわ」と読むで。"
-    },
-
-    {
-        name:"紀伊",
-        reading:"きい",
-        line:"阪和線",
-        level:"normal",
-        explanation:"和歌山県との県境付近にある駅。「きい」と読むで。"
-    },
-
-
-    /* ===== 湖西線 ===== */
-
-    {
-        name:"和邇",
-        reading:"わに",
-        line:"湖西線",
-        level:"hard",
-        explanation:"滋賀県大津市にある駅。「和邇」と書いて「わに」と読むで。"
-    },
-
-    {
-        name:"蓬莱",
-        reading:"ほうらい",
-        line:"湖西線",
-        level:"hard",
-        explanation:"「蓬莱」は「ほうらい」。中国神話にも登場する言葉やで。"
-    },
-
-    {
-        name:"安曇川",
-        reading:"あどがわ",
-        line:"湖西線",
-        level:"expert",
-        explanation:"「安曇川」と書いて「あどがわ」。かなり読みづらい駅名やな。"
-    },
-
-    {
-        name:"近江高島",
-        reading:"おうみたかしま",
-        line:"湖西線",
-        level:"normal",
-        explanation:"高島市にある駅。「おうみたかしま」と読むで。"
-    },
-
-    {
-        name:"近江今津",
-        reading:"おうみいまづ",
-        line:"湖西線",
-        level:"normal",
-        explanation:"湖西線の主要駅。「おうみいまづ」と読むで。"
-    },
-
-    {
-        name:"マキノ",
-        reading:"まきの",
-        line:"湖西線",
-        level:"normal",
-        explanation:"滋賀県高島市にある駅。カタカナ表記の駅名やで。"
-    },
-
-
-    /* ===== 琵琶湖線・草津線 ===== */
-
-    {
-        name:"膳所",
-        reading:"ぜぜ",
-        line:"琵琶湖線",
-        level:"expert",
-        explanation:"「膳所」と書いて「ぜぜ」。滋賀県大津市の有名な難読地名やで。"
-    },
-
-    {
-        name:"石山",
-        reading:"いしやま",
-        line:"琵琶湖線",
-        level:"normal",
-        explanation:"大津市にある駅。「いしやま」と読むで。"
-    },
-
-    {
-        name:"瀬田",
-        reading:"せた",
-        line:"琵琶湖線",
-        level:"normal",
-        explanation:"大津市にある駅。「せた」と読むで。"
-    },
-
-    {
-        name:"南草津",
-        reading:"みなみくさつ",
-        line:"琵琶湖線",
-        level:"normal",
-        explanation:"草津市にある駅。新快速も停車する主要駅やで。"
-    },
-
-    {
-        name:"草津",
-        reading:"くさつ",
-        line:"琵琶湖線・草津線",
-        level:"normal",
-        explanation:"琵琶湖線と草津線の分岐駅。滋賀県の主要駅やで。"
-    },
-
-    {
-        name:"貴生川",
-        reading:"きぶかわ",
-        line:"草津線",
-        level:"expert",
-        explanation:"「貴生川」と書いて「きぶかわ」。かなり難しい読み方やな。"
-    },
-
-
-    /* ===== 嵯峨野線 ===== */
-
-    {
-        name:"嵯峨嵐山",
-        reading:"さがあらしやま",
-        line:"嵯峨野線",
-        level:"normal",
-        explanation:"京都・嵐山観光の玄関口のひとつ。「さがあらしやま」と読むで。"
-    },
-
-    {
-        name:"保津峡",
-        reading:"ほづきょう",
-        line:"嵯峨野線",
-        level:"hard",
-        explanation:"山間部にある駅。「保津峡」と書いて「ほづきょう」と読むで。"
-    },
-
-    {
-        name:"亀岡",
-        reading:"かめおか",
-        line:"嵯峨野線",
-        level:"normal",
-        explanation:"京都府亀岡市の中心駅。「かめおか」と読むで。"
-    },
-
-    {
-        name:"八木",
-        reading:"やぎ",
-        line:"嵯峨野線",
-        level:"normal",
-        explanation:"南丹市にある駅。「八木」で「やぎ」と読むで。"
-    },
-
-    {
-        name:"日吉",
-        reading:"ひよし",
-        line:"嵯峨野線",
-        level:"normal",
-        explanation:"南丹市にある駅。「ひよし」と読むで。"
-    },
-
-    {
-        name:"園部",
-        reading:"そのべ",
-        line:"嵯峨野線",
-        level:"normal",
-        explanation:"嵯峨野線の主要駅。「そのべ」と読むで。"
-    },
-
-
-    /* ===== 奈良線 ===== */
-
-    {
-        name:"桃山",
-        reading:"ももやま",
-        line:"奈良線",
-        level:"normal",
-        explanation:"京都市伏見区にある駅。「ももやま」と読むで。"
-    },
-
-    {
-        name:"六地蔵",
-        reading:"ろくじぞう",
-        line:"奈良線",
-        level:"normal",
-        explanation:"京都市伏見区にある駅。JR以外の路線とも接続する駅やで。"
-    },
-
-    {
-        name:"木幡",
-        reading:"こはた",
-        line:"奈良線",
-        level:"hard",
-        explanation:"宇治市にある駅。「木幡」と書いて「こはた」と読むで。"
-    },
-
-    {
-        name:"黄檗",
-        reading:"おうばく",
-        line:"奈良線",
-        level:"expert",
-        explanation:"「黄檗」と書いて「おうばく」。宇治市にある難読駅名やで。"
-    },
-
-    {
-        name:"宇治",
-        reading:"うじ",
-        line:"奈良線",
-        level:"normal",
-        explanation:"京都府宇治市の主要駅。「うじ」と読むで。"
-    },
-
-    {
-        name:"城陽",
-        reading:"じょうよう",
-        line:"奈良線",
-        level:"normal",
-        explanation:"京都府城陽市にある駅。「じょうよう」と読むで。"
-    },
-
-    {
-        name:"玉水",
-        reading:"たまみず",
-        line:"奈良線",
-        level:"normal",
-        explanation:"京都府井手町にある駅。「たまみず」と読むで。"
-    },
-
-    {
-        name:"木津",
-        reading:"きづ",
-        line:"奈良線・大和路線・学研都市線",
-        level:"hard",
-        explanation:"複数路線が集まる重要駅。「木津」と書いて「きづ」と読むで。"
-    },
-
-
-    /* ===== 和歌山線 ===== */
-
-    {
-        name:"掖上",
-        reading:"わきがみ",
-        line:"和歌山線",
-        level:"expert",
-        explanation:"「掖上」は「わきがみ」と読む。漢字だけではかなり難しい駅名やな。"
-    },
-
-    {
-        name:"畠田",
-        reading:"はたけだ",
-        line:"和歌山線",
-        level:"hard",
-        explanation:"「畠」は「はたけ」と読む漢字。畠田で「はたけだ」やで。"
-    },
-
-    {
-        name:"志都美",
-        reading:"しずみ",
-        line:"和歌山線",
-        level:"expert",
-        explanation:"奈良県香芝市にある駅。「志都美」と書いて「しずみ」と読むで。"
-    },
-
-    {
-        name:"高田",
-        reading:"たかだ",
-        line:"和歌山線・桜井線",
-        level:"normal",
-        explanation:"奈良県大和高田市の中心駅。「たかだ」と読むで。"
-    },
-
-    {
-        name:"五条",
-        reading:"ごじょう",
-        line:"和歌山線",
-        level:"normal",
-        explanation:"奈良県五條市にある駅。「ごじょう」と読むで。"
-    },
-
-    {
-        name:"橋本",
-        reading:"はしもと",
-        line:"和歌山線",
-        level:"normal",
-        explanation:"和歌山県橋本市の主要駅。南海電鉄とも接続するで。"
-    },
-
-    {
-        name:"粉河",
-        reading:"こかわ",
-        line:"和歌山線",
-        level:"hard",
-        explanation:"和歌山県紀の川市にある駅。「粉河」と書いて「こかわ」と読むで。"
-    },
-
-    {
-        name:"岩出",
-        reading:"いわで",
-        line:"和歌山線",
-        level:"normal",
-        explanation:"和歌山県岩出市にある駅。「いわで」と読むで。"
-    },
-
-
-    /* ===== きのくに線 ===== */
 
     {
         name:"御坊",
@@ -1603,39 +1119,7 @@ const stations = [
         reading:"ゆあさ",
         line:"きのくに線",
         level:"normal",
-        explanation:"和歌山県湯浅町にある駅。醤油発祥の地としても知られているで。"
-    },
-
-    {
-        name:"箕島",
-        reading:"みのしま",
-        line:"きのくに線",
-        level:"hard",
-        explanation:"有田市にある駅。「箕島」で「みのしま」と読むで。"
-    },
-
-    {
-        name:"藤並",
-        reading:"ふじなみ",
-        line:"きのくに線",
-        level:"normal",
-        explanation:"有田川町にある駅。「ふじなみ」と読むで。"
-    },
-
-    {
-        name:"紀伊由良",
-        reading:"きいゆら",
-        line:"きのくに線",
-        level:"hard",
-        explanation:"和歌山県由良町にある駅。「きいゆら」と読むで。"
-    },
-
-    {
-        name:"周参見",
-        reading:"すさみ",
-        line:"きのくに線",
-        level:"expert",
-        explanation:"「周参見」と書いて「すさみ」。和歌山県すさみ町の代表的な難読地名やで。"
+        explanation:"和歌山県湯浅町にある駅。醤油発祥の地としても知られとるで。"
     },
 
     {
@@ -1643,7 +1127,7 @@ const stations = [
         reading:"くしもと",
         line:"きのくに線",
         level:"normal",
-        explanation:"本州最南端の町・串本町にある駅。「くしもと」と読むで。"
+        explanation:"本州最南端の町・串本町にある駅や。"
     },
 
     {
@@ -1663,38 +1147,125 @@ const stations = [
     },
 
     {
-        name:"新宮",
-        reading:"しんぐう",
-        line:"きのくに線",
+        name:"京都",
+        reading:"きょうと",
+        line:"東海道新幹線・東海道本線・山陰本線ほか",
         level:"normal",
-        explanation:"和歌山県新宮市の中心駅。紀南地方の主要駅やで。"
-    },
-
-
-    /* ===== 播但線 ===== */
-
-    {
-        name:"生野",
-        reading:"いくの",
-        line:"播但線",
-        level:"normal",
-        explanation:"播但線の駅。「生野」で「いくの」と読む。生野銀山でも有名な地域やで。"
+        explanation:"京都府を代表する巨大ターミナル駅。新幹線や在来線各線が集まっとるで。"
     },
 
     {
-        name:"竹田",
-        reading:"たけだ",
-        line:"播但線",
+        name:"嵯峨嵐山",
+        reading:"さがあらしやま",
+        line:"嵯峨野線",
         level:"normal",
-        explanation:"天空の城として有名な竹田城跡へのアクセス駅やで。"
+        explanation:"京都・嵐山観光の玄関口のひとつ。"
     },
 
     {
-        name:"青倉",
-        reading:"あおくら",
-        line:"播但線",
+        name:"園部",
+        reading:"そのべ",
+        line:"嵯峨野線",
+        level:"normal",
+        explanation:"嵯峨野線の主要駅。ここから先は山陰本線区間になるで。"
+    },
+
+    {
+        name:"福知山",
+        reading:"ふくちやま",
+        line:"山陰本線・福知山線",
+        level:"normal",
+        explanation:"北近畿を代表するターミナル駅や。"
+    },
+
+    {
+        name:"西舞鶴",
+        reading:"にしまいづる",
+        line:"舞鶴線",
+        level:"normal",
+        explanation:"舞鶴市にある駅。舞鶴線の主要駅やで。"
+    },
+
+    {
+        name:"東舞鶴",
+        reading:"ひがしまいづる",
+        line:"舞鶴線・小浜線",
+        level:"normal",
+        explanation:"舞鶴線と小浜線が接続する駅や。"
+    },
+
+    {
+        name:"敦賀",
+        reading:"つるが",
+        line:"北陸新幹線・北陸本線・小浜線",
+        level:"normal",
+        explanation:"北陸新幹線の現在の終点側にある大規模な乗換駅や。"
+    },
+
+    {
+        name:"米原",
+        reading:"まいばら",
+        line:"東海道新幹線・琵琶湖線",
+        level:"normal",
+        explanation:"滋賀県の主要ターミナル。新幹線と在来線が接続するで。"
+    },
+
+    {
+        name:"近江八幡",
+        reading:"おうみはちまん",
+        line:"琵琶湖線",
+        level:"normal",
+        explanation:"滋賀県近江八幡市の中心駅。新快速も停車するで。"
+    },
+
+    {
+        name:"大津",
+        reading:"おおつ",
+        line:"琵琶湖線",
+        level:"normal",
+        explanation:"滋賀県の県庁所在地・大津市の中心駅や。"
+    },
+
+    /* ===== 難しい ===== */
+
+    {
+        name:"放出",
+        reading:"はなてん",
+        line:"学研都市線・おおさか東線",
         level:"hard",
-        explanation:"播但線の駅。「青倉」で「あおくら」と読むで。"
+        explanation:"「放出」は「ほうしゅつ」ではなく「はなてん」と読む有名な難読駅名やで。"
+    },
+
+    {
+        name:"御幣島",
+        reading:"みてじま",
+        line:"JR東西線",
+        level:"hard",
+        explanation:"「御幣島」と書いて「みてじま」。大阪市西淀川区にある駅や。"
+    },
+
+    {
+        name:"忍ケ丘",
+        reading:"しのぶがおか",
+        line:"学研都市線",
+        level:"hard",
+        explanation:"「忍」を「しのぶ」と読む駅名。四條畷市にあるで。"
+    },
+
+    {
+        name:"河内磐船",
+        reading:"かわちいわふね",
+        line:"学研都市線",
+        level:"hard",
+        explanation:"「磐船」は「いわふね」と読む地名やで。"
+    },
+
+    {
+        name:"祝園",
+        reading:"ほうその",
+        line:"学研都市線",
+        level:"hard",
+        explanation:"「祝園」と書いて「ほうその」。漢字から読むのはかなり難しいな。"
     },
 
     {
@@ -1706,14 +1277,6 @@ const stations = [
     },
 
     {
-        name:"溝口",
-        reading:"みぞぐち",
-        line:"播但線",
-        level:"normal",
-        explanation:"姫路市にある播但線の駅。「みぞぐち」と読むで。"
-    },
-
-    {
         name:"甘地",
         reading:"あまじ",
         line:"播但線",
@@ -1722,27 +1285,11 @@ const stations = [
     },
 
     {
-        name:"鶴居",
-        reading:"つるい",
-        line:"播但線",
-        level:"normal",
-        explanation:"市川町にある駅。「つるい」と読むで。"
-    },
-
-    {
         name:"新野",
         reading:"にいの",
         line:"播但線",
         level:"hard",
-        explanation:"「新野」と書いて「にいの」と読む播但線の難読駅名やで。"
-    },
-
-    {
-        name:"寺前",
-        reading:"てらまえ",
-        line:"播但線",
-        level:"normal",
-        explanation:"播但線の主要駅。ここから和田山方面は山岳区間になるで。"
+        explanation:"「新野」と書いて「にいの」と読む播但線の駅や。"
     },
 
     {
@@ -1754,6 +1301,64 @@ const stations = [
     },
 
     {
+        name:"十三",
+        reading:"じゅうそう",
+        line:"JR西日本周辺難読地名",
+        level:"hard",
+        explanation:"大阪を代表する難読地名のひとつ。ただし駅自体は阪急線の駅やで。"
+    },
+
+    {
+        name:"百舌鳥",
+        reading:"もず",
+        line:"阪和線",
+        level:"hard",
+        explanation:"「百舌鳥」と書いて「もず」。阪和線の実在駅やで。"
+    },
+
+    {
+        name:"鳳",
+        reading:"おおとり",
+        line:"阪和線",
+        level:"hard",
+        explanation:"一文字で「おおとり」と読む駅名。阪和線の主要駅や。"
+    },
+
+    {
+        name:"和邇",
+        reading:"わに",
+        line:"湖西線",
+        level:"hard",
+        explanation:"滋賀県大津市にある駅。「和邇」で「わに」と読むで。"
+    },
+
+    {
+        name:"蓬莱",
+        reading:"ほうらい",
+        line:"湖西線",
+        level:"hard",
+        explanation:"「蓬莱」は「ほうらい」。湖西線の駅名やで。"
+    },
+
+    {
+        name:"畠田",
+        reading:"はたけだ",
+        line:"和歌山線",
+        level:"hard",
+        explanation:"「畠」を「はたけ」と読むことで「はたけだ」になる駅名や。"
+    },
+
+    {
+        name:"英賀保",
+        reading:"あがほ",
+        line:"山陽本線",
+        level:"hard",
+        explanation:"「英賀保」と書いて「あがほ」。播磨地域ではおなじみの地名やで。"
+    },
+
+    /* ===== 鬼 ===== */
+
+    {
         name:"新井",
         reading:"にい",
         line:"播但線",
@@ -1762,187 +1367,73 @@ const stations = [
     },
 
     {
-        name:"和田山",
-        reading:"わだやま",
-        line:"播但線・山陰本線",
-        level:"normal",
-        explanation:"播但線と山陰本線が接続する主要駅。「わだやま」と読むで。"
-    },
-
-
-    /* ===== 姫新線 ===== */
-
-    {
-        name:"播磨高岡",
-        reading:"はりまたかおか",
-        line:"姫新線",
-        level:"normal",
-        explanation:"姫路市にある姫新線の駅。「はりまたかおか」と読むで。"
-    },
-
-    {
-        name:"余部",
-        reading:"よべ",
-        line:"姫新線",
-        level:"hard",
-        explanation:"姫路市にある駅。「余部」と書いて「よべ」と読むで。"
-    },
-
-    {
-        name:"太市",
-        reading:"おおいち",
-        line:"姫新線",
-        level:"hard",
-        explanation:"姫路市にある姫新線の駅。「太市」と書いて「おおいち」と読むで。"
-    },
-
-    {
-        name:"本竜野",
-        reading:"ほんたつの",
-        line:"姫新線",
-        level:"hard",
-        explanation:"たつの市の主要駅。「本竜野」で「ほんたつの」と読むで。"
-    },
-
-    {
-        name:"東觜崎",
-        reading:"ひがしはしさき",
-        line:"姫新線",
+        name:"安曇川",
+        reading:"あどがわ",
+        line:"湖西線",
         level:"expert",
-        explanation:"「觜崎」は難読地名。「ひがしはしさき」と読むで。"
+        explanation:"「安曇川」と書いて「あどがわ」。滋賀県高島市を流れる川の名前でもあるで。"
     },
 
     {
-        name:"播磨新宮",
-        reading:"はりましんぐう",
-        line:"姫新線",
-        level:"normal",
-        explanation:"たつの市にある姫新線の主要駅。「はりましんぐう」と読むで。"
+        name:"膳所",
+        reading:"ぜぜ",
+        line:"琵琶湖線",
+        level:"expert",
+        explanation:"「膳所」と書いて「ぜぜ」。滋賀県大津市の歴史ある地名や。"
     },
 
     {
-        name:"千本",
-        reading:"せんぼん",
-        line:"姫新線",
-        level:"normal",
-        explanation:"宍粟市付近にある姫新線の駅。「せんぼん」と読むで。"
+        name:"掖上",
+        reading:"わきがみ",
+        line:"和歌山線",
+        level:"expert",
+        explanation:"「掖上」は「わきがみ」と読む。漢字だけではかなり難しい駅名やな。"
     },
 
     {
-        name:"西栗栖",
-        reading:"にしくりす",
-        line:"姫新線",
-        level:"normal",
-        explanation:"姫新線の駅。「にしくりす」と読むで。"
+        name:"志都美",
+        reading:"しずみ",
+        line:"和歌山線",
+        level:"expert",
+        explanation:"奈良県香芝市にある駅。「志都美」と書いて「しずみ」と読むで。"
     },
 
     {
-        name:"三日月",
-        reading:"みかづき",
-        line:"姫新線",
-        level:"normal",
-        explanation:"佐用町にある駅。「三日月」で「みかづき」と読むで。"
+        name:"周参見",
+        reading:"すさみ",
+        line:"きのくに線",
+        level:"expert",
+        explanation:"「周参見」と書いて「すさみ」。和歌山県すさみ町の代表的な難読地名や。"
     },
 
     {
-        name:"佐用",
-        reading:"さよ",
-        line:"姫新線・智頭急行線",
-        level:"hard",
-        explanation:"「佐用」と書いて「さよ」。姫新線と智頭急行線が接続する駅やで。"
-    },
-
-
-    /* ===== 山陰本線 ===== */
-
-    {
-        name:"保津峡",
-        reading:"ほづきょう",
-        line:"山陰本線",
-        level:"hard",
-        explanation:"京都府内の山間部にある駅。「ほづきょう」と読むで。"
+        name:"喜連瓜破",
+        reading:"きれうりわり",
+        line:"JR西日本周辺難読地名",
+        level:"expert",
+        explanation:"大阪を代表する難読地名。「きれうりわり」と読むで。ただし駅は大阪メトロや。"
     },
 
     {
-        name:"綾部",
-        reading:"あやべ",
-        line:"山陰本線・舞鶴線",
-        level:"normal",
-        explanation:"山陰本線と舞鶴線が分岐する主要駅やで。"
-    },
-
-    {
-        name:"福知山",
-        reading:"ふくちやま",
-        line:"山陰本線・福知山線",
-        level:"normal",
-        explanation:"北近畿を代表するターミナル駅。「ふくちやま」と読むで。"
-    },
-
-    {
-        name:"和田山",
-        reading:"わだやま",
-        line:"山陰本線・播但線",
-        level:"normal",
-        explanation:"山陰本線と播但線の接続駅。「わだやま」と読むで。"
-    },
-
-    {
-        name:"八鹿",
-        reading:"ようか",
-        line:"山陰本線",
-        level:"hard",
-        explanation:"「八鹿」と書いて「ようか」と読む。兵庫県養父市の駅やで。"
-    },
-
-    {
-        name:"江原",
-        reading:"えばら",
-        line:"山陰本線",
-        level:"normal",
-        explanation:"豊岡市にある駅。「えばら」と読むで。"
-    },
-
-    {
-        name:"豊岡",
-        reading:"とよおか",
-        line:"山陰本線",
-        level:"normal",
-        explanation:"兵庫県北部の主要駅。「とよおか」と読むで。"
-    },
-
-    {
-        name:"城崎温泉",
-        reading:"きのさきおんせん",
-        line:"山陰本線",
-        level:"normal",
-        explanation:"兵庫県を代表する温泉地の最寄り駅。特急列車も多く停車するで。"
-    },
-
-    {
-        name:"香住",
-        reading:"かすみ",
-        line:"山陰本線",
-        level:"normal",
-        explanation:"兵庫県香美町にある駅。「かすみ」と読むで。"
-    },
-
-    {
-        name:"浜坂",
-        reading:"はまさか",
-        line:"山陰本線",
-        level:"normal",
-        explanation:"兵庫県新温泉町にある駅。「はまさか」と読むで。"
+        name:"艮御崎",
+        reading:"うしとらみさき",
+        line:"JR西日本周辺難読地名",
+        level:"expert",
+        explanation:"「艮」は方角を表す漢字で「うしとら」と読む。かなり難しい読み方やな。"
     }
 
 ];
 
 
-/* ==========================================
+/* ==================================================
    ゲーム変数
-========================================== */
+================================================== */
 
 let difficulty = "normal";
+
+let skipLimit = 1;
+
+let skipUsed = 0;
 
 let currentStation = null;
 
@@ -1956,7 +1447,7 @@ let correctCount = 0;
 
 let totalCount = 0;
 
-let skipCount = 0;
+let skippedCount = 0;
 
 let timeLeft = 30;
 
@@ -1969,9 +1460,9 @@ let showingExplanation = false;
 let usedStations = [];
 
 
-/* ==========================================
+/* ==================================================
    難易度変更
-========================================== */
+================================================== */
 
 function setDifficulty(level, button) {
 
@@ -1981,17 +1472,42 @@ function setDifficulty(level, button) {
 
     document
         .querySelectorAll(".difficulty button")
-        .forEach(
-            b => b.classList.remove("active")
+        .forEach(b =>
+            b.classList.remove("active")
         );
 
     button.classList.add("active");
 }
 
 
-/* ==========================================
+/* ==================================================
+   スキップ回数変更
+================================================== */
+
+function setSkipLimit(limit, button) {
+
+    if (playing) return;
+
+    skipLimit = limit;
+
+    document
+        .querySelectorAll(".skip-select button")
+        .forEach(b =>
+            b.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    document.getElementById(
+        "skipCount"
+    ).textContent =
+        `0/${skipLimit}`;
+}
+
+
+/* ==================================================
    タイマー
-========================================== */
+================================================== */
 
 function startTimer() {
 
@@ -2008,8 +1524,9 @@ function startTimer() {
 
         timeLeft--;
 
-        document.getElementById("time")
-            .textContent = timeLeft;
+        document.getElementById(
+            "time"
+        ).textContent = timeLeft;
 
         if (timeLeft <= 0) {
 
@@ -2021,9 +1538,9 @@ function startTimer() {
 }
 
 
-/* ==========================================
+/* ==================================================
    ゲーム開始
-========================================== */
+================================================== */
 
 function startGame() {
 
@@ -2039,7 +1556,9 @@ function startGame() {
 
     totalCount = 0;
 
-    skipCount = 0;
+    skippedCount = 0;
+
+    skipUsed = 0;
 
     timeLeft = 30;
 
@@ -2050,25 +1569,37 @@ function startGame() {
     playing = true;
 
 
-    document.getElementById("score")
-        .textContent = "0";
+    document.getElementById(
+        "score"
+    ).textContent = "0";
 
-    document.getElementById("combo")
-        .textContent = "0";
+    document.getElementById(
+        "combo"
+    ).textContent = "0";
 
-    document.getElementById("time")
-        .textContent = "30";
+    document.getElementById(
+        "time"
+    ).textContent = "30";
+
+    document.getElementById(
+        "skipCount"
+    ).textContent =
+        `0/${skipLimit}`;
 
 
-    document.getElementById("result")
-        .classList.remove("show");
-
-    document.getElementById("explanation")
-        .classList.remove("show");
+    document.getElementById(
+        "result"
+    ).classList.remove("show");
 
 
-    document.getElementById("gameScreen")
-        .style.display = "block";
+    document.getElementById(
+        "explanation"
+    ).classList.remove("show");
+
+
+    document.getElementById(
+        "gameScreen"
+    ).style.display = "block";
 
 
     const input =
@@ -2081,11 +1612,14 @@ function startGame() {
     input.focus();
 
 
-    document.getElementById("message")
-        .textContent = "";
+    document.getElementById(
+        "startButton"
+    ).disabled = true;
 
-    document.getElementById("message")
-        .className = "message";
+
+    document.getElementById(
+        "message"
+    ).textContent = "";
 
 
     nextQuestion();
@@ -2094,9 +1628,9 @@ function startGame() {
 }
 
 
-/* ==========================================
+/* ==================================================
    次の問題
-========================================== */
+================================================== */
 
 function nextQuestion() {
 
@@ -2109,7 +1643,7 @@ function nextQuestion() {
 
     if (pool.length === 0) {
 
-        pool = [...stations];
+        pool = stations;
 
     }
 
@@ -2146,12 +1680,15 @@ function nextQuestion() {
     );
 
 
-    document.getElementById("station")
-        .textContent =
+    document.getElementById(
+        "station"
+    ).textContent =
         currentStation.name;
 
-    document.getElementById("line")
-        .textContent =
+
+    document.getElementById(
+        "line"
+    ).textContent =
         currentStation.line;
 
 
@@ -2163,144 +1700,124 @@ function nextQuestion() {
     input.focus();
 
 
-    document.getElementById("message")
-        .textContent = "";
+    document.getElementById(
+        "message"
+    ).textContent = "";
 
-    document.getElementById("message")
-        .className = "message";
+    document.getElementById(
+        "message"
+    ).className = "message";
 }
 
 
-/* ==========================================
-   スキップ
-========================================== */
+/* ==================================================
+   解説
+================================================== */
 
-function skipQuestion() {
-
-    if (
-        !playing ||
-        showingExplanation ||
-        !currentStation
-    ) {
-        return;
-    }
-
-
-    const input =
-        document.getElementById("answer");
-
-
-    /*
-        何か入力されている場合は
-        Spaceを普通の入力として扱う
-    */
-
-    if (
-        input.value.trim() !== ""
-    ) {
-        return;
-    }
-
-
-    skipCount++;
-
-    combo = 0;
-
-    document.getElementById("combo")
-        .textContent = "0";
-
-
-    document.getElementById("message")
-        .textContent =
-        "⏭️ スキップ！";
-
-    document.getElementById("message")
-        .className =
-        "message";
-
-
-    nextQuestion();
-}
-
-
-/* ==========================================
-   解説表示
-========================================== */
-
-function showExplanation(correct) {
+function showExplanation(correct, skipped = false) {
 
     showingExplanation = true;
 
     clearInterval(timer);
 
 
-    const station =
-        currentStation;
+    const station = currentStation;
 
 
-    document.getElementById("gameScreen")
-        .style.display = "none";
-
-    document.getElementById("explanation")
-        .classList.add("show");
+    document.getElementById(
+        "gameScreen"
+    ).style.display = "none";
 
 
-    document.getElementById("explanationMark")
-        .textContent =
-        correct ? "⭕" : "❌";
-
-    document.getElementById("explanationTitle")
-        .textContent =
-        correct ? "正解！" : "不正解！";
+    document.getElementById(
+        "explanation"
+    ).classList.add("show");
 
 
-    document.getElementById("explanationStation")
-        .textContent =
+    if (skipped) {
+
+        document.getElementById(
+            "explanationMark"
+        ).textContent = "⏭️";
+
+        document.getElementById(
+            "explanationTitle"
+        ).textContent =
+            "スキップ！";
+
+    } else {
+
+        document.getElementById(
+            "explanationMark"
+        ).textContent =
+            correct ? "⭕" : "❌";
+
+        document.getElementById(
+            "explanationTitle"
+        ).textContent =
+            correct
+                ? "正解！"
+                : "不正解！";
+    }
+
+
+    document.getElementById(
+        "explanationStation"
+    ).textContent =
         station.name;
 
-    document.getElementById("explanationReading")
-        .textContent =
+
+    document.getElementById(
+        "explanationReading"
+    ).textContent =
         station.reading;
 
-    document.getElementById("explanationLine")
-        .textContent =
+
+    document.getElementById(
+        "explanationLine"
+    ).textContent =
         station.line;
 
-    document.getElementById("explanationAnswer")
-        .textContent =
+
+    document.getElementById(
+        "explanationAnswer"
+    ).textContent =
         station.reading;
 
 
     const levelText = {
 
-        normal:"🟢 普通",
+        normal: "🟢 普通",
 
-        hard:"🟡 難しい",
+        hard: "🟡 難しい",
 
-        expert:"🔴 鬼"
+        expert: "🔴 鬼"
 
     };
 
 
-    document.getElementById("explanationLevel")
-        .textContent =
+    document.getElementById(
+        "explanationLevel"
+    ).textContent =
         levelText[station.level];
 
 
-    document.getElementById("explanationText")
-        .textContent =
+    document.getElementById(
+        "explanationText"
+    ).textContent =
         station.explanation;
 }
 
 
-/* ==========================================
+/* ==================================================
    解説 → 次の問題
-========================================== */
+================================================== */
 
 function nextFromExplanation() {
 
-    document.getElementById("explanation")
-        .classList.remove("show");
+    document.getElementById(
+        "explanation"
+    ).classList.remove("show");
 
 
     showingExplanation = false;
@@ -2322,8 +1839,9 @@ function nextFromExplanation() {
     }
 
 
-    document.getElementById("gameScreen")
-        .style.display = "block";
+    document.getElementById(
+        "gameScreen"
+    ).style.display = "block";
 
 
     nextQuestion();
@@ -2332,62 +1850,262 @@ function nextFromExplanation() {
 }
 
 
-/* ==========================================
-   回答判定
-========================================== */
+/* ==================================================
+   回答処理
+================================================== */
 
-document.getElementById("answer")
-    .addEventListener(
-        "keydown",
-        event => {
+function submitAnswer() {
+
+    if (
+        !playing ||
+        showingExplanation ||
+        !currentStation
+    ) {
+        return;
+    }
+
+
+    const input =
+        document.getElementById(
+            "answer"
+        ).value
+        .trim()
+        .replace(/\s/g, "");
+
+
+    if (!input) {
+
+        return;
+
+    }
+
+
+    totalCount++;
+
+
+    /* =========================
+       正解
+    ========================= */
+
+    if (
+        input === currentStation.reading
+    ) {
+
+        correctCount++;
+
+        combo++;
+
+
+        if (combo > maxCombo) {
+
+            maxCombo = combo;
+
+        }
+
+
+        const comboBonus =
+            combo >= 5
+                ? 50
+                : combo >= 3
+                    ? 20
+                    : 0;
+
+
+        score +=
+            100 +
+            comboBonus;
+
+
+        document.getElementById(
+            "score"
+        ).textContent = score;
+
+
+        document.getElementById(
+            "combo"
+        ).textContent = combo;
+
+
+        document.getElementById(
+            "message"
+        ).textContent =
+            combo >= 3
+                ? `⭕ 正解！ ${combo} COMBO！`
+                : "⭕ 正解！";
+
+
+        document.getElementById(
+            "message"
+        ).className =
+            "message correct";
+
+
+        showExplanation(true);
+
+    }
+
+
+    /* =========================
+       不正解
+    ========================= */
+
+    else {
+
+        combo = 0;
+
+
+        document.getElementById(
+            "combo"
+        ).textContent = "0";
+
+
+        document.getElementById(
+            "message"
+        ).textContent =
+            "❌ ちゃうで！";
+
+
+        document.getElementById(
+            "message"
+        ).className =
+            "message wrong";
+
+
+        showExplanation(false);
+
+    }
+}
+
+
+/* ==================================================
+   スキップ
+================================================== */
+
+function skipQuestion() {
+
+    if (
+        !playing ||
+        showingExplanation ||
+        !currentStation
+    ) {
+        return;
+    }
+
+
+    const input =
+        document.getElementById(
+            "answer"
+        );
+
+
+    /*
+        入力中はスキップ不可
+    */
+
+    if (
+        input.value.trim() !== ""
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+        回数上限
+    */
+
+    if (
+        skipUsed >= skipLimit
+    ) {
+
+        document.getElementById(
+            "message"
+        ).textContent =
+            "⚠️ スキップ回数を使い切ったで！";
+
+        document.getElementById(
+            "message"
+        ).className =
+            "message wrong";
+
+        return;
+
+    }
+
+
+    skipUsed++;
+
+    skippedCount++;
+
+
+    combo = 0;
+
+
+    document.getElementById(
+        "combo"
+    ).textContent = "0";
+
+
+    document.getElementById(
+        "skipCount"
+    ).textContent =
+        `${skipUsed}/${skipLimit}`;
+
+
+    showExplanation(
+        false,
+        true
+    );
+}
+
+
+/* ==================================================
+   Enter / Space キー
+================================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        /*
+            Enter
+        */
+
+        if (
+            event.key === "Enter"
+        ) {
 
             /*
-                Spaceでスキップ
+                ゲーム開始前
             */
 
-            if (
-                event.code === "Space"
-            ) {
+            if (!playing) {
 
-                const input =
-                    event.target;
+                const resultVisible =
+                    document
+                        .getElementById("result")
+                        .classList
+                        .contains("show");
 
                 if (
-                    input.value.trim() === ""
+                    !resultVisible &&
+                    !showingExplanation
                 ) {
 
-                    event.preventDefault();
-
-                    skipQuestion();
-
-                    return;
+                    startGame();
 
                 }
 
-            }
-
-
-            /*
-                Enter
-            */
-
-            if (
-                event.key !== "Enter"
-            ) {
                 return;
             }
-
-
-            event.preventDefault();
 
 
             /*
                 解説中
             */
 
-            if (
-                showingExplanation
-            ) {
+            if (showingExplanation) {
 
                 nextFromExplanation();
 
@@ -2400,205 +2118,45 @@ document.getElementById("answer")
                 ゲーム中
             */
 
+            submitAnswer();
+
+            return;
+        }
+
+
+        /*
+            Space
+        */
+
+        if (
+            event.code === "Space"
+        ) {
+
+            /*
+                ゲーム中かつ
+                入力欄が空の場合のみ
+            */
+
             if (
-                !playing ||
-                !currentStation
+                playing &&
+                !showingExplanation
             ) {
-                return;
-            }
 
-
-            const input =
-                event.target.value
-                    .trim()
-                    .replace(
-                        /\s/g,
-                        ""
+                const input =
+                    document.getElementById(
+                        "answer"
                     );
 
-
-            if (!input) {
-                return;
-            }
-
-
-            totalCount++;
-
-
-            /*
-                正解
-            */
-
-            if (
-                input ===
-                currentStation.reading
-            ) {
-
-                correctCount++;
-
-                combo++;
-
-
                 if (
-                    combo > maxCombo
+                    document.activeElement === input &&
+                    input.value.trim() === ""
                 ) {
 
-                    maxCombo = combo;
+                    event.preventDefault();
+
+                    skipQuestion();
 
                 }
-
-
-                const comboBonus =
-                    combo >= 5
-                        ? 50
-                        : combo >= 3
-                            ? 20
-                            : 0;
-
-
-                score +=
-                    100 +
-                    comboBonus;
-
-
-                document.getElementById("score")
-                    .textContent =
-                    score;
-
-                document.getElementById("combo")
-                    .textContent =
-                    combo;
-
-
-                document.getElementById("message")
-                    .textContent =
-                    combo >= 3
-                        ? `⭕ 正解！ ${combo} COMBO！`
-                        : "⭕ 正解！";
-
-                document.getElementById("message")
-                    .className =
-                    "message correct";
-
-
-                showExplanation(true);
-
-            }
-
-
-            /*
-                不正解
-            */
-
-            else {
-
-                combo = 0;
-
-
-                document.getElementById("combo")
-                    .textContent =
-                    "0";
-
-
-                document.getElementById("message")
-                    .textContent =
-                    "❌ ちゃうで！";
-
-                document.getElementById("message")
-                    .className =
-                    "message wrong";
-
-
-                showExplanation(false);
-
-            }
-
-        }
-    );
-
-
-/* ==========================================
-   ページ全体のEnter操作
-========================================== */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        /*
-            入力欄以外でEnter
-        */
-
-        if (
-            event.key !== "Enter"
-        ) {
-            return;
-        }
-
-
-        /*
-            解説中
-        */
-
-        if (
-            showingExplanation
-        ) {
-
-            event.preventDefault();
-
-            nextFromExplanation();
-
-            return;
-
-        }
-
-
-        /*
-            ゲーム開始前
-        */
-
-        if (
-            !playing
-        ) {
-
-            const result =
-                document.getElementById(
-                    "result"
-                );
-
-            /*
-                結果画面なら再スタート
-            */
-
-            if (
-                result.classList.contains("show")
-            ) {
-
-                event.preventDefault();
-
-                startGame();
-
-                return;
-
-            }
-
-
-            /*
-                初期状態ならスタート
-            */
-
-            const input =
-                document.getElementById(
-                    "answer"
-                );
-
-            if (
-                input.disabled
-            ) {
-
-                event.preventDefault();
-
-                startGame();
 
             }
 
@@ -2608,9 +2166,9 @@ document.addEventListener(
 );
 
 
-/* ==========================================
+/* ==================================================
    ゲーム終了
-========================================== */
+================================================== */
 
 function endGame() {
 
@@ -2621,23 +2179,34 @@ function endGame() {
     clearInterval(timer);
 
 
-    document.getElementById("answer")
-        .disabled = true;
+    document.getElementById(
+        "answer"
+    ).disabled = true;
 
 
-    document.getElementById("gameScreen")
-        .style.display = "none";
-
-    document.getElementById("explanation")
-        .classList.remove("show");
-
-    document.getElementById("result")
-        .classList.add("show");
+    document.getElementById(
+        "startButton"
+    ).disabled = false;
 
 
-    document.getElementById("finalScore")
-        .textContent =
-        score;
+    document.getElementById(
+        "gameScreen"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "explanation"
+    ).classList.remove("show");
+
+
+    document.getElementById(
+        "result"
+    ).classList.add("show");
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent = score;
 
 
     const accuracy =
@@ -2650,54 +2219,44 @@ function endGame() {
             );
 
 
-    document.getElementById("resultInfo")
-        .innerHTML = `
+    document.getElementById(
+        "resultInfo"
+    ).innerHTML = `
 
-            ⏱️ 30秒終了！
+        ⏱️ 30秒終了！
 
-            <br>
+        <br>
 
-            正解：
-            <b>${correctCount}</b>
-            問
+        正解：
+        <b>${correctCount}</b> 問
 
-            ／
+        <br>
 
-            回答：
-            <b>${totalCount}</b>
-            問
+        回答：
+        <b>${totalCount}</b> 問
 
-            <br>
+        <br>
 
-            正答率：
-            <b>${accuracy}%</b>
+        スキップ：
+        <b>${skippedCount}</b> 回
 
-            ／
+        <br>
 
-            最大コンボ：
-            <b>${maxCombo}</b>
+        正答率：
+        <b>${accuracy}%</b>
 
-            <br>
+        <br>
 
-            スキップ：
-            <b>${skipCount}</b>
-            回
+        最大コンボ：
+        <b>${maxCombo}</b>
 
-        `;
+        <br>
+
+        出題した駅：
+        <b>${usedStations.length}</b> 駅
+
+    `;
 }
-
-
-/* ==========================================
-   初期状態
-========================================== */
-
-document.getElementById("station")
-    .textContent =
-    "ENTER";
-
-document.getElementById("line")
-    .textContent =
-    "Enterキーでゲーム開始";
 
 </script>
 
